@@ -16,7 +16,7 @@
                   class="mb-3"
                 />
                 <base-input
-                  name="Password"
+                  name="Passwoard"
                   :rules="{ required: true, min: 6 }"
                   prepend-icon="ni ni-lock-circle-open"
                   type="password"
@@ -51,12 +51,11 @@ export default {
   methods: {
     async onSubmit() {
       try {
-        // ✅ Login
-        const response = await axios.post(
-          "https://apikeuanganmasjid-production.up.railway.app/users/login",
-          this.model,
-          { withCredentials: true } // ✅ kirim cookie
-        );
+       const response = await axios.post(
+  "https://apikeuanganmasjid-production.up.railway.app/users/login",
+  this.model,
+  { withCredentials: true } // ✅ wajib untuk kirim cookie session
+);
 
         if (!response.data.status) {
           alert(response.data.msg);
@@ -64,10 +63,11 @@ export default {
         }
 
         // ✅ Cek session
-        const userCheck = await axios.get(
-          "https://apikeuanganmasjid-production.up.railway.app/users/check-session",
-          { withCredentials: true }
-        );
+       const userCheck = await axios.get(
+  "https://apikeuanganmasjid-production.up.railway.app/users/check-session",
+  { withCredentials: true } // ✅ wajib juga
+);
+
 
         if (userCheck.data.status) {
           const user = userCheck.data.user;

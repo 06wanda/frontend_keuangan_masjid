@@ -4,12 +4,12 @@ import App from './App.vue';
 import router from './routes/router';
 import axios from 'axios';
 
+// ✅ Setting untuk akses ke backend di Railway
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'https://apikeuanganmasjid-production.up.railway.app';
 
 Vue.use(DashboardPlugin);
 
-// Langsung buat app aja
 new Vue({
   el: '#app',
   render: h => h(App),
